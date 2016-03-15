@@ -3,6 +3,17 @@ TicketMagpie
 
 This project aims at demonstrating various security vulnerabilities such as the ones listed in the OWASP Top10.
 
+
+Running the project
+---------------------------
+
+This project requires [Maven 3](https://maven.apache.org/). Once you have Maven, you can start the application like this:
+
+
+```
+mvn spring-boot:run
+```
+
  
 Vulnerabilities
 ===============
