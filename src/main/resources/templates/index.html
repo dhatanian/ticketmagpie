@@ -79,32 +79,15 @@
     <div class="wrapper">
         <div class="container">
             <div class="row">
-                <section class="6u 12u(narrower) feature">
+                <section class="6u 12u(narrower) feature" th:each="concert : ${concerts}">
                     <div class="image-wrapper first">
                         <a href="#" class="image featured first"><img
-                                th:src="@{/images/Lake_Malawi_music_band.jpg}"
-                                alt="By Lakemalawimusic - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=41735474"/></a>
+                                th:src="@{/images/{imagePath}(imagePath=${concert.imageUrl})}"/></a>
                     </div>
                     <header>
-                        <h2>Lake Malawi - July 15th</h2>
+                        <h2 th:text="${concert.band}"></h2>
                     </header>
-                    <p>Lake Malawi is an indie-pop band formed by Albert Cerny in September
-                        2013, based in UK and the Czech Republic.</p>
-                    <ul class="actions">
-                        <li><a href="#" class="button">Book</a></li>
-                    </ul>
-                </section>
-                <section class="6u 12u(narrower) feature">
-                    <div class="image-wrapper">
-                        <a href="#" class="image featured"><img
-                                th:src="@{/images/jazz-band.jpg}"
-                                alt=""/></a>
-                    </div>
-                    <header>
-                        <h2>The Players - May 22nd</h2>
-                    </header>
-                    <p>Re-discover The Players on their second tour at the City Concert Hall.
-                        Includes extraordinary new compositions and jazz classics.</p>
+                    <p th:text="${concert.description}"></p>
                     <ul class="actions">
                         <li><a href="#" class="button">Book</a></li>
                     </ul>
@@ -181,7 +164,8 @@
                     Released for free under
                     <br/>
                     the <a href="http://html5up.net/license">Creative Commons Attribution 3.0
-                        license</a>.</li>
+                        license</a>.
+                </li>
 
             </ul>
         </div>
