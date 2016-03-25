@@ -7,7 +7,9 @@ This project aims at demonstrating various security vulnerabilities such as the 
 Running the project
 ---------------------------
 
-This project requires [Maven 3](https://maven.apache.org/). Once you have Maven, you can start the application like this:
+This project requires [Maven 3](https://maven.apache.org/).
+
+Once you have Maven, you can start the application by running this command from the root folder of the project:
 
 
 ```
@@ -26,7 +28,7 @@ You can pass custom database configuration as follows:
 mvn spring-boot:run -Dspring.datasource.url=jdbc:mysql://MYSQL_SERVER:PORT/DB_NAME -Dspring.datasource.username=USER -Dspring.datasource.password=PASSWORD
 ```
 
-If you do not have database server, you can run the application with an HSQLDB in-memory database:
+If you do not have a database server, you can run the application with an HSQLDB in-memory database:
 
 
 ```
