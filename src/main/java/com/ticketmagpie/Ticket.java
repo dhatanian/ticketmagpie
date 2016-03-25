@@ -11,8 +11,8 @@ public class Ticket {
   private String postcode;
   private String country;
 
-  public Ticket(String concertId, String firstName, String lastName, String address1, String address2, String address3, String postcode, String country) {
-    this.concertId = Integer.valueOf(concertId);
+  public Ticket(Integer concertId, String firstName, String lastName, String address1, String address2, String address3, String postcode, String country) {
+    this.concertId = concertId;
     this.firstName = firstName;
     this.lastName = lastName;
     this.address1 = address1;
@@ -61,16 +61,16 @@ public class Ticket {
   @Override
   public String toString() {
     return "Ticket{" +
-            "id=" + id +
-            ", concertId=" + concertId +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", address1='" + address1 + '\'' +
-            ", address2='" + address2 + '\'' +
-            ", address3='" + address3 + '\'' +
-            ", postcode='" + postcode + '\'' +
-            ", country='" + country + '\'' +
-            '}';
+        "id=" + id +
+        ", concertId=" + concertId +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", address1='" + address1 + '\'' +
+        ", address2='" + address2 + '\'' +
+        ", address3='" + address3 + '\'' +
+        ", postcode='" + postcode + '\'' +
+        ", country='" + country + '\'' +
+        '}';
   }
 }
 

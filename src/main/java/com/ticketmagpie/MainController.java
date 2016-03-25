@@ -44,11 +44,18 @@ public class MainController {
           @RequestParam("address3") String address3,
           @RequestParam("postcode") String postCode,
           @RequestParam("country") String country,
-          @RequestParam("concertid") String concertId) {
+          @RequestParam("concertid") Integer concertId) {
     Ticket ticket =
         new Ticket(concertId, firstName, lastName, address1, address2, address3, postCode, country);
     int savedTicketId = ticketRepository.save(ticket);
-    return "redirect:/tickets?id=" + savedTicketId;
+    return "redirect:/ticket?id=" + savedTicketId;
   }
 
+  @RequestMapping("/ticket")
+  public String ticket(@RequestParam Integer id, Model model) {
+    Ticket ticket = ticketRepository.get(id);
+    model.addAttribute("ticket", ticket);
+    model.addAttribute("concert", concertRepository.get(ticket.getConcertId()));
+    return "ticket";
+  }
 }

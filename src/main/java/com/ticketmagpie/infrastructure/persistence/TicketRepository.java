@@ -1,5 +1,8 @@
 package com.ticketmagpie.infrastructure.persistence;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -31,4 +34,20 @@ public class TicketRepository {
     return lastIdInserted.get();
   }
 
+  public Ticket get(Integer id) {
+    return jdbcTemplate.queryForObject("SELECT * FROM tickets WHERE id=?", (rs, rowNum) -> toTicket(rs), id);
+  }
+
+  private Ticket toTicket(ResultSet rs) throws SQLException {
+    return new Ticket(
+        rs.getInt("concertid"),
+        rs.getString("firstname"),
+        rs.getString("lastname"),
+        rs.getString("address1"),
+        rs.getString("address2"),
+        rs.getString("address3"),
+        rs.getString("postcode"),
+        rs.getString("country")
+    );
+  }
 }

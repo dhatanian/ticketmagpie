@@ -37,22 +37,22 @@
             <nav id="nav">
                 <ul>
                     <!--<li>-->
-                        <!--<a href="#">Dropdown</a>-->
-                        <!--<ul>-->
-                            <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
-                            <!--<li><a href="#">Magna phasellus</a></li>-->
-                            <!--<li><a href="#">Etiam dolore nisl</a></li>-->
-                            <!--<li>-->
-                                <!--<a href="#">Phasellus consequat</a>-->
-                                <!--<ul>-->
-                                    <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
-                                    <!--<li><a href="#">Phasellus consequat</a></li>-->
-                                    <!--<li><a href="#">Magna phasellus</a></li>-->
-                                    <!--<li><a href="#">Etiam dolore nisl</a></li>-->
-                                <!--</ul>-->
-                            <!--</li>-->
-                            <!--<li><a href="#">Veroeros feugiat</a></li>-->
-                        <!--</ul>-->
+                    <!--<a href="#">Dropdown</a>-->
+                    <!--<ul>-->
+                    <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
+                    <!--<li><a href="#">Magna phasellus</a></li>-->
+                    <!--<li><a href="#">Etiam dolore nisl</a></li>-->
+                    <!--<li>-->
+                    <!--<a href="#">Phasellus consequat</a>-->
+                    <!--<ul>-->
+                    <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
+                    <!--<li><a href="#">Phasellus consequat</a></li>-->
+                    <!--<li><a href="#">Magna phasellus</a></li>-->
+                    <!--<li><a href="#">Etiam dolore nisl</a></li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">Veroeros feugiat</a></li>-->
+                    <!--</ul>-->
                     <!--</li>-->
                     <li><a href="/">What's on</a></li>
                     <li class="break"><a href="/user/home">User home</a></li>
@@ -62,37 +62,35 @@
 
         </div>
 
-        <!-- Hero -->
-        <section id="hero" class="container">
-            <header>
-                <h2>All the shiny tickets are here!</h2>
-            </header>
-
-            <ul class="actions">
-                <li><a href="#" class="button">Get this party started</a></li>
-            </ul>
-        </section>
 
     </div>
 
     <!-- Features 1 -->
     <div class="wrapper">
         <div class="container">
-            <div class="row">
-                <section class="6u 12u(narrower) feature" th:each="concert : ${concerts}">
-                    <div class="image-wrapper first">
-                        <a href="#" class="image featured first"><img
-                                th:src="@{/images/{imagePath}(imagePath=${concert.imageUrl})}"/></a>
-                    </div>
-                    <header>
-                        <h2 th:text="${concert.band}"></h2>
-                    </header>
-                    <p th:text="${concert.description}"></p>
-                    <ul class="actions">
-                        <li><a th:href="@{/user/book(id=${concert.id})}" class="button">Book</a></li>
-                    </ul>
-                </section>
-            </div>
+            <h1>Your ticket to <span th:text="${concert.band}"></span></h1>
+            <table border="1" style="max-width: 400px; margin: auto;">
+                <tr>
+                    <td>First name</td>
+                    <td th:text="${ticket.firstName}"></td>
+                </tr>
+                <tr>
+                    <td>Last name</td>
+                    <td th:text="${ticket.lastName}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p th:text="${ticket.address1}"></p>
+                        <p th:text="${ticket.address2}"></p>
+                        <p th:text="${ticket.address3}"></p>
+                        <p>
+                            <span th:text="${ticket.postcode}"></span>
+                            <span th:text="${ticket.country}"></span>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            <p><b>Enjoy the show!</b></p>
         </div>
     </div>
 
