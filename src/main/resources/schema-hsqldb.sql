@@ -6,3 +6,8 @@ CREATE TABLE concerts (
   description VARCHAR(255),
   image_url   VARCHAR(255)
 );
+
+CREATE TABLE users (
+  username VARCHAR(255),
+  password VARCHAR(255)
+);

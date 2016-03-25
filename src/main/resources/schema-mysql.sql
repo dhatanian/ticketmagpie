@@ -5,3 +5,9 @@ CREATE TABLE concerts (
   description VARCHAR(255),
   image_url   VARCHAR(255)
 );
+
+DROP TABLE IF EXISTS users CASCADE;
+CREATE TABLE users (
+  username VARCHAR(255) NOT NULL PRIMARY KEY,
+  password VARCHAR(255)
+);
