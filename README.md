@@ -53,3 +53,12 @@ Corresponding OWASP Top10 vulnerability: [A5 Security Misconfiguration](https://
 
 To fix this, either disable the endpoint entirely, or use environment-specific configuration to only enable it on the continuous integration server.
 
+
+SQL injection in login form
+---------------------------
+
+Passwords stored in plain text
+---------------------------
+
+Insecure URL for access to tickets
+---------------------------
