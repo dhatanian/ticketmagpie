@@ -14,6 +14,18 @@ This project requires [Maven 3](https://maven.apache.org/). Once you have Maven,
 mvn spring-boot:run
 ```
 
+Database configuration
+---------------------------
+
+By default, the application expects a MySQL database to be available on localhost, default port 3306.
+The application will use the user `root` to connect to a database called `ticketmagpie`.
+
+You can pass custom database configuration as follows:
+
+```
+mvn spring-boot:run -Dspring.datasource.url=jdbc:mysql://MYSQL_SERVER:PORT/DB_NAME -Dspring.datasource.username=USER -Dspring.datasource.password=PASSWORD
+```
+
  
 Vulnerabilities
 ===============
