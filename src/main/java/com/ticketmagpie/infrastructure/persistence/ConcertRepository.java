@@ -1,17 +1,18 @@
-package com.ticketmagpie.infrastructure;
+package com.ticketmagpie.infrastructure.persistence;
 
-import com.ticketmagpie.Concert;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 import java.util.Map;
 
-import static java.util.stream.Collectors.toList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+
+import com.ticketmagpie.Concert;
 
 @Component
-public class TicketRepository {
+public class ConcertRepository {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 

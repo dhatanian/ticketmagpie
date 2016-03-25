@@ -1,4 +1,4 @@
-package com.ticketmagpie.infrastructure;
+package com.ticketmagpie.infrastructure.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

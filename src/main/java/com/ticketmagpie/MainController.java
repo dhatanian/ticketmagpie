@@ -1,4 +1,4 @@
-package com.ticketmagpie.infrastructure;
+package com.ticketmagpie;
 
 import java.util.List;
 
@@ -8,14 +8,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ticketmagpie.Concert;
-import com.ticketmagpie.Ticket;
+import com.ticketmagpie.infrastructure.persistence.ConcertRepository;
+import com.ticketmagpie.infrastructure.persistence.TicketRepository;
 
 @Controller
 public class MainController {
 
   @Autowired
   private ConcertRepository concertRepository;
+
+  @Autowired
+  private TicketRepository ticketRepository;
 
   @ModelAttribute("concerts")
   public List<Concert> injectConcerts() {
@@ -48,9 +51,10 @@ public class MainController {
           @RequestParam("postcode") String postCode,
           @RequestParam("country") String country,
           @RequestParam("concertid") String concertId) {
-    new Ticket(concertId, firstName, lastName, address1, address2, address3, postCode, country);
-    return "paymentform";
-
+    Ticket ticket =
+        new Ticket(concertId, firstName, lastName, address1, address2, address3, postCode, country);
+    int savedTicketId = ticketRepository.save(ticket);
+    return "redirect:/tickets?id=" + savedTicketId;
   }
 
 }

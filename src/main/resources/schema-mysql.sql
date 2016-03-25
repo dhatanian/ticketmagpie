@@ -11,3 +11,16 @@ CREATE TABLE users (
   username VARCHAR(255) NOT NULL PRIMARY KEY,
   password VARCHAR(255)
 );
+
+DROP TABLE IF EXISTS tickets CASCADE;
+CREATE TABLE tickets (
+  id        INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  concertid INT NOT NULL,
+  firstname VARCHAR(255),
+  lastname  VARCHAR(255),
+  address1  VARCHAR(255),
+  address2  VARCHAR(255),
+  address3  VARCHAR(255),
+  postcode  VARCHAR(255),
+  country   VARCHAR(255)
+);

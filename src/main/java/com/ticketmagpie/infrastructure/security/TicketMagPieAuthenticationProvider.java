@@ -1,4 +1,4 @@
-package com.ticketmagpie.infrastructure;
+package com.ticketmagpie.infrastructure.security;
 
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;

@@ -11,3 +11,15 @@ CREATE TABLE users (
   username VARCHAR(255),
   password VARCHAR(255)
 );
+
+CREATE TABLE tickets (
+  id        IDENTITY,
+  concertid INT NOT NULL,
+  firstname VARCHAR(255),
+  lastname  VARCHAR(255),
+  address1  VARCHAR(255),
+  address2  VARCHAR(255),
+  address3  VARCHAR(255),
+  postcode  VARCHAR(255),
+  country   VARCHAR(255)
+);

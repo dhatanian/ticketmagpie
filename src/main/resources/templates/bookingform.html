@@ -35,9 +35,9 @@
         Postcode/ZIP <input name="postcode"/>
         Country <select name="country"><option>United Kingdom</option>
                         <option>France</option></select>
-        <input type="hidden" name="concertid" value="0">
+        <input type="hidden" name="concertid" value="0" />
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input type="submit"/>
-
     </form>
 
     <!-- Header -->
