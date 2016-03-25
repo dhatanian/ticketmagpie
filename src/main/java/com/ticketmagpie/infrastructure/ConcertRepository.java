@@ -1,4 +1,4 @@
-package com.ticketmagpie;
+package com.ticketmagpie.infrastructure;
 
 import static java.util.stream.Collectors.toList;
 
@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import com.ticketmagpie.Concert;
 
 @Component
 public class ConcertRepository {
