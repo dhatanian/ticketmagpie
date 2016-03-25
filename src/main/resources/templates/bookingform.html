@@ -26,6 +26,20 @@
 <body class="homepage">
 <div id="page-wrapper">
 
+    <form action="/user/book/payment" method="POST">
+        First Name <input name="firstname"/>
+        Last Name <input name="lastname"/>
+        Address Line 1 <input name="address1"/>
+        Address Line 2 <input name="address2"/>
+        Address Line 3 <input name="address3"/>
+        Postcode/ZIP <input name="postcode"/>
+        Country <select name="country"><option>United Kingdom</option>
+                        <option>France</option></select>
+        <input type="hidden" name="concertid" value="0">
+        <input type="submit"/>
+
+    </form>
+
     <!-- Header -->
     <div id="header-wrapper">
         <div id="header" class="container">
