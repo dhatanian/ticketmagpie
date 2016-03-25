@@ -1,10 +1,8 @@
 package com.ticketmagpie;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,14 +18,9 @@ public class MainController {
   @Autowired
   private TicketRepository ticketRepository;
 
-  @ModelAttribute("concerts")
-  public List<Concert> injectConcerts() {
-    return concertRepository.getAllConcerts();
-  }
-
   @RequestMapping("/")
-  public String index() {
-    injectConcerts();
+  public String index(Model model) {
+    model.addAttribute("concerts", concertRepository.getAllConcerts());
     return "index";
   }
 
@@ -37,7 +30,8 @@ public class MainController {
   }
 
   @RequestMapping("/user/book")
-  public String userBook(@RequestParam String id) {
+  public String userBook(@RequestParam String id, Model model) {
+    model.addAttribute("concertid", id);
     return "bookingform";
   }
 
