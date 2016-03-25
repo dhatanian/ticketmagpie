@@ -26,20 +26,6 @@
 <body class="homepage">
 <div id="page-wrapper">
 
-    <form action="/user/book/payment" method="POST">
-        First Name <input name="firstname"/>
-        Last Name <input name="lastname"/>
-        Address Line 1 <input name="address1"/>
-        Address Line 2 <input name="address2"/>
-        Address Line 3 <input name="address3"/>
-        Postcode/ZIP <input name="postcode"/>
-        Country <select name="country"><option>United Kingdom</option>
-                        <option>France</option></select>
-        <input type="hidden" name="concertid" th:value="${concertid}" />
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-        <input type="submit"/>
-    </form>
-
     <!-- Header -->
     <div id="header-wrapper">
         <div id="header" class="container">
@@ -51,22 +37,22 @@
             <nav id="nav">
                 <ul>
                     <!--<li>-->
-                        <!--<a href="#">Dropdown</a>-->
-                        <!--<ul>-->
-                            <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
-                            <!--<li><a href="#">Magna phasellus</a></li>-->
-                            <!--<li><a href="#">Etiam dolore nisl</a></li>-->
-                            <!--<li>-->
-                                <!--<a href="#">Phasellus consequat</a>-->
-                                <!--<ul>-->
-                                    <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
-                                    <!--<li><a href="#">Phasellus consequat</a></li>-->
-                                    <!--<li><a href="#">Magna phasellus</a></li>-->
-                                    <!--<li><a href="#">Etiam dolore nisl</a></li>-->
-                                <!--</ul>-->
-                            <!--</li>-->
-                            <!--<li><a href="#">Veroeros feugiat</a></li>-->
-                        <!--</ul>-->
+                    <!--<a href="#">Dropdown</a>-->
+                    <!--<ul>-->
+                    <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
+                    <!--<li><a href="#">Magna phasellus</a></li>-->
+                    <!--<li><a href="#">Etiam dolore nisl</a></li>-->
+                    <!--<li>-->
+                    <!--<a href="#">Phasellus consequat</a>-->
+                    <!--<ul>-->
+                    <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
+                    <!--<li><a href="#">Phasellus consequat</a></li>-->
+                    <!--<li><a href="#">Magna phasellus</a></li>-->
+                    <!--<li><a href="#">Etiam dolore nisl</a></li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">Veroeros feugiat</a></li>-->
+                    <!--</ul>-->
                     <!--</li>-->
                     <li><a href="/">All tickets</a></li>
                     <li class="break"><a href="/user/home">User home</a></li>
@@ -76,37 +62,57 @@
 
         </div>
 
-        <!-- Hero -->
-        <section id="hero" class="container">
-            <header>
-                <h2>All the shiny tickets are here!</h2>
-            </header>
-
-            <ul class="actions">
-                <li><a href="#" class="button">Get this party started</a></li>
-            </ul>
-        </section>
 
     </div>
 
     <!-- Features 1 -->
     <div class="wrapper">
         <div class="container">
-            <div class="row">
-                <section class="6u 12u(narrower) feature" th:each="concert : ${concerts}">
-                    <div class="image-wrapper first">
-                        <a href="#" class="image featured first"><img
-                                th:src="@{/images/{imagePath}(imagePath=${concert.imageUrl})}"/></a>
+            <p>Please enter your personal info to book this concert.</p>
+            <form action="/user/book/payment" method="POST">
+                <div class="row 50%">
+                    <div class="6u">
+                        <input name="firstname" placeholder="First Name" type="text"/>
                     </div>
-                    <header>
-                        <h2 th:text="${concert.band}"></h2>
-                    </header>
-                    <p th:text="${concert.description}"></p>
-                    <ul class="actions">
-                        <li><a th:href="@{/user/book(id=${concert.id})}" class="button">Book</a></li>
-                    </ul>
-                </section>
-            </div>
+                    <div class="6u">
+                        <input name="lastname" placeholder="Last Name" type="text"/>
+                    </div>
+                </div>
+                <div class="row 50%">
+                    <div class="12u">
+                        <input name="address1" placeholder="Address Line 1" type="text"/>
+                    </div>
+                </div>
+                <div class="row 50%">
+                    <div class="12u">
+                        <input name="address2" placeholder="Address Line 2" type="text"/>
+                    </div>
+                </div>
+                <div class="row 50%">
+                    <div class="12u">
+                        <input name="address3" placeholder="Address Line 3" type="text"/>
+                    </div>
+                </div>
+                <div class="row 50%">
+                    <div class="6u">
+                        <input name="postcode" placeholder="Postcode/ZIP" type="text"/>
+                    </div>
+                    <div class="6u">
+                        <select name="country">
+                            <option>United Kingdom</option>
+                            <option>France</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row 50%">
+                    <div class="12u">
+                        <input type="hidden" name="concertid" th:value="${concertid}"/>
+                        <input type="hidden" th:name="${_csrf.parameterName}"
+                               th:value="${_csrf.token}"/>
+                        <input type="submit"/>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
