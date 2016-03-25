@@ -31,7 +31,6 @@ If you do not have database server, you can run the application with an HSQLDB i
 
 ```
 mvn spring-boot:run -Dspring.profiles.active=hsqldb
-
 ```
 
  
