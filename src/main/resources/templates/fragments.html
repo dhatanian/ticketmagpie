@@ -38,7 +38,10 @@
                 <ul>
                     <li><a href="/">What's on</a></li>
                     <li class="break">
-                        <a href="/user/home" th:text="${#authentication.name != 'anonymousUser'} ? ${#authentication.name} : 'Log in'"></a>
+                        <a href="/user/home">
+                            <span class="icon fa-user"></span> &nbsp;
+                            <span th:text="${#authentication.name != 'anonymousUser'} ? ${#authentication.name} : 'Log in'"></span>
+                        </a>
                     </li>
                 </ul>
             </nav>
