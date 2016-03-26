@@ -22,5 +22,6 @@ CREATE TABLE tickets (
   address2  VARCHAR(255),
   address3  VARCHAR(255),
   postcode  VARCHAR(255),
-  country   VARCHAR(255)
+  country   VARCHAR(255),
+  user      VARCHAR(255)
 );

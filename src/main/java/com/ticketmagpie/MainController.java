@@ -1,6 +1,7 @@
 package com.ticketmagpie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,8 @@ public class MainController {
   }
 
   @RequestMapping("/user/home")
-  public String userHome() {
+  public String userHome(Model model, Authentication authentication) {
+    model.addAttribute("tickets", ticketRepository.getTicketsForUser(authentication.getName()));
     return "user";
   }
 
@@ -44,9 +46,10 @@ public class MainController {
           @RequestParam("address3") String address3,
           @RequestParam("postcode") String postCode,
           @RequestParam("country") String country,
-          @RequestParam("concertid") Integer concertId) {
+          @RequestParam("concertid") Integer concertId,
+          Authentication currentUser) {
     Ticket ticket =
-        new Ticket(concertId, firstName, lastName, address1, address2, address3, postCode, country);
+        new Ticket(concertRepository.get(concertId), firstName, lastName, address1, address2, address3, postCode, country, currentUser.getName());
     int savedTicketId = ticketRepository.save(ticket);
     return "redirect:/ticket?id=" + savedTicketId;
   }
@@ -55,7 +58,6 @@ public class MainController {
   public String ticket(@RequestParam Integer id, Model model) {
     Ticket ticket = ticketRepository.get(id);
     model.addAttribute("ticket", ticket);
-    model.addAttribute("concert", concertRepository.get(ticket.getConcertId()));
     return "ticket";
   }
 }

@@ -12,6 +12,15 @@
     <div class="wrapper">
         <div class="container">
             <p>Hello <span sec:authentication="name"></span>!</p>
+            <p th:if="${#lists.isEmpty(tickets)}">
+                You have no tickets yet, why not <a href="/">book one of our concerts?</a>
+            </p>
+            <ul th:if="${not #lists.isEmpty(tickets)}">
+                Your tickets:
+                <li th:each="ticket : ${tickets}">
+                    <a th:href="@{/ticket(id=${ticket.id})}" th:text="${ticket.concert.band}"></a>
+                </li>
+            </ul>
         </div>
     </div>
 

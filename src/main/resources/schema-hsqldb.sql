@@ -13,7 +13,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE tickets (
-  id        IDENTITY,
+  id IDENTITY,
   concertid INT NOT NULL,
   firstname VARCHAR(255),
   lastname  VARCHAR(255),
@@ -21,5 +21,6 @@ CREATE TABLE tickets (
   address2  VARCHAR(255),
   address3  VARCHAR(255),
   postcode  VARCHAR(255),
-  country   VARCHAR(255)
+  country   VARCHAR(255),
+  user      VARCHAR(255)
 );
