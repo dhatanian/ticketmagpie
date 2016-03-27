@@ -16,6 +16,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Autowired
   private TicketMagPieAuthenticationProvider ticketMagPieAuthenticationProvider;
 
+  @Autowired
+  private TicketMagPieRememberMeService ticketMagPieRememberMeService;
+
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
@@ -28,13 +31,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .permitAll()
         .and()
         .logout()
-        .permitAll();
+        .permitAll()
+        .and()
+        .rememberMe()
+        .rememberMeServices(ticketMagPieRememberMeService)
+    ;
   }
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth
-        .authenticationProvider(ticketMagPieAuthenticationProvider);
+        .authenticationProvider(ticketMagPieAuthenticationProvider)
+        .eraseCredentials(false);
   }
 
   @Bean

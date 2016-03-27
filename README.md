@@ -62,3 +62,6 @@ Passwords stored in plain text
 
 Insecure URL for access to tickets
 ---------------------------
+
+Very unsecure remember-me feature...
+---------------------------
