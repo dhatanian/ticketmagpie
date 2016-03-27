@@ -37,6 +37,11 @@ public class MainController {
     return "bookingform";
   }
 
+  @RequestMapping("/login")
+  public String login() {
+    return "login";
+  }
+
   @RequestMapping("/user/book/payment")
   public String userPayment
       (@RequestParam("firstname") String firstName,
