@@ -4,7 +4,7 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="ticketmagpie-head">
     <title>TicketMagpie - the place to get all the tickets!</title>
     <meta charset="utf-8"/>
@@ -37,6 +37,11 @@
             <nav id="nav">
                 <ul>
                     <li><a href="/">What's on</a></li>
+                    <li th:if="${#authentication.name != 'anonymousUser'}">
+                        <a sec:authorize="hasAuthority('ADMIN')">
+                            Admin
+                        </a>
+                    </li>
                     <li class="break">
                         <a href="/user/home">
                             <span class="icon fa-user"></span> &nbsp;

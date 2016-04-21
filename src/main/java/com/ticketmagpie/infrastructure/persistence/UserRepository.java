@@ -34,6 +34,6 @@ public class UserRepository {
   }
 
   private User toUser(ResultSet rs) throws SQLException {
-    return new User(rs.getString("username"), rs.getString("password"));
+    return new User(rs.getString("username"), rs.getString("password"), rs.getString("role"));
   }
 }
