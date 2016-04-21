@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ticketmagpie.infrastructure.persistence.ConcertRepository;
 import com.ticketmagpie.infrastructure.persistence.TicketRepository;
+import com.ticketmagpie.infrastructure.persistence.UserRepository;
 
 @Controller
 public class MainController {
@@ -18,6 +19,9 @@ public class MainController {
 
   @Autowired
   private TicketRepository ticketRepository;
+
+  @Autowired
+  private UserRepository userRepository;
 
   @RequestMapping("/")
   public String index(Model model) {
@@ -64,5 +68,18 @@ public class MainController {
     Ticket ticket = ticketRepository.get(id);
     model.addAttribute("ticket", ticket);
     return "ticket";
+  }
+
+  @RequestMapping("/forgotpassword")
+  public String forgotPassword(@RequestParam(required = false) String user) {
+    return "forgotpassword";
+  }
+
+  @RequestMapping("/passwordemail")
+  public String passwordEmail(@RequestParam String user, Model model) {
+    User userFromDatabase = userRepository.get(user);
+    System.out.println(userFromDatabase);
+    model.addAttribute("userFromDatabase", userFromDatabase);
+    return "passwordemail";
   }
 }
