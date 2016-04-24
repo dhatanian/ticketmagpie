@@ -19,7 +19,13 @@
                 <tbody>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.username}"></td>
-                    <td>TODO delete</td>
+                    <td>
+                        <form th:action="@{users/delete(username=${user.username})}"
+                              method="post" style="display:inline;">
+                            <input type="submit" value="Delete"
+                                   style="padding: 0.2em;"/>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>

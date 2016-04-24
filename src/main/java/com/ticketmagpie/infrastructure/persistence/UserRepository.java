@@ -38,6 +38,10 @@ public class UserRepository {
     return jdbcTemplate.query("SELECT * FROM users", (rs, rowNum) -> toUser(rs));
   }
 
+  public void delete(String username) {
+    jdbcTemplate.update("DELETE FROM users WHERE username=?", username);
+  }
+
   private User toUser(ResultSet rs) throws SQLException {
     return new User(rs.getString("username"), rs.getString("password"), rs.getString("role"));
   }
