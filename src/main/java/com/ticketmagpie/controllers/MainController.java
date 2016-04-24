@@ -1,4 +1,4 @@
-package com.ticketmagpie;
+package com.ticketmagpie.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ticketmagpie.Ticket;
+import com.ticketmagpie.User;
 import com.ticketmagpie.infrastructure.persistence.ConcertRepository;
 import com.ticketmagpie.infrastructure.persistence.TicketRepository;
 import com.ticketmagpie.infrastructure.persistence.UserRepository;

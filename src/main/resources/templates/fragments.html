@@ -38,7 +38,7 @@
                 <ul>
                     <li><a href="/">What's on</a></li>
                     <li th:if="${#authentication.name != 'anonymousUser'}">
-                        <a sec:authorize="hasAuthority('ADMIN')">
+                        <a sec:authorize="hasAuthority('ADMIN')" href="/user/admin">
                             Admin
                         </a>
                     </li>
