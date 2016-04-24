@@ -30,16 +30,20 @@ public class UserRepository {
     return jdbcTemplate.queryForObject(passwordCheckQuery(username, password), (rs, rowNum) -> toUser(rs));
   }
 
-  private String passwordCheckQuery(String username, String password) {
-    return format("SELECT * FROM users WHERE username='%s' AND password='%s'", username, password);
-  }
-
   public List<User> getAllUsers() {
     return jdbcTemplate.query("SELECT * FROM users", (rs, rowNum) -> toUser(rs));
   }
 
   public void delete(String username) {
     jdbcTemplate.update("DELETE FROM users WHERE username=?", username);
+  }
+
+  public void save(User user) {
+    jdbcTemplate.update("INSERT INTO users (username, password, role) VALUES (?, ?, ?)", user.getUsername(), user.getPassword(), user.getRole());
+  }
+
+  private String passwordCheckQuery(String username, String password) {
+    return format("SELECT * FROM users WHERE username='%s' AND password='%s'", username, password);
   }
 
   private User toUser(ResultSet rs) throws SQLException {

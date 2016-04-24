@@ -14,11 +14,13 @@
             <table>
                 <thead>
                 <td><b>Name</b></td>
+                <td><b>Role</b></td>
                 <td></td>
                 </thead>
                 <tbody>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.username}"></td>
+                    <td th:text="${user.role}"></td>
                     <td>
                         <form th:action="@{users/delete(username=${user.username})}"
                               method="post" style="display:inline;">
@@ -29,7 +31,26 @@
                 </tr>
                 </tbody>
             </table>
-            TODO create
+            <h1><b>Create a new user</b></h1>
+            <form action="" method="post">
+                <div><label>Username:</label>
+                    <input type="text"
+                           name="username"/>
+                </div>
+                <div><label>Role:</label>
+                    <select name="role">
+                        <option selected="selected">USER</option>
+                        <option>ADMIN</option>
+                    </select>
+                </div>
+                <div><label>Password:</label>
+                    <input type="password"
+                           name="password"/>
+                </div>
+                <div>
+                    <input type="submit" value="Create"/>
+                </div>
+            </form>
         </div>
     </div>
 
