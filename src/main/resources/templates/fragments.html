@@ -50,8 +50,6 @@
                         <form th:if="${#authentication.name != 'anonymousUser'}"
                               action="/logout"
                               method="post" style="display:inline;">
-                            <input type="hidden" th:name="${_csrf.parameterName}"
-                                   th:value="${_csrf.token}"/>
                             <input type="submit" value="Sign Out"
                                    style="padding: 0.2em; color: white; border-color: white;"/>
                         </form>
