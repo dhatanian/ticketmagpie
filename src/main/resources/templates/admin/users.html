@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: ticketmagpie-head">
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <div th:replace="fragments :: ticketmagpie-header">
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <table>
+                <thead>
+                <td><b>Name</b></td>
+                <td></td>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.username}"></td>
+                    <td>TODO delete</td>
+                </tr>
+                </tbody>
+            </table>
+            TODO create
+        </div>
+    </div>
+
+    <div th:replace="fragments :: ticketmagpie-footer">
+    </div>
+
+</div>
+
+<!-- Scripts -->
+
+<span th:replace="fragments :: ticketmagpie-scripts"></span>
+
+</body>
+</html>

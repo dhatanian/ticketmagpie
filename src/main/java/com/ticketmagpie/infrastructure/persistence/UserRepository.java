@@ -4,6 +4,7 @@ import static java.lang.String.format;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -31,6 +32,10 @@ public class UserRepository {
 
   private String passwordCheckQuery(String username, String password) {
     return format("SELECT * FROM users WHERE username='%s' AND password='%s'", username, password);
+  }
+
+  public List<User> getAllUsers() {
+    return jdbcTemplate.query("SELECT * FROM users", (rs, rowNum) -> toUser(rs));
   }
 
   private User toUser(ResultSet rs) throws SQLException {
