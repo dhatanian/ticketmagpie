@@ -53,4 +53,10 @@ public class AdminController {
     model.addAttribute("concerts", concertRepository.getAllConcerts());
     return "admin/concerts";
   }
+
+  @RequestMapping(value = "/concerts/delete", method = POST)
+  public String deleteConcert(@RequestParam("id") int id, Model model) {
+    concertRepository.delete(id);
+    return listConcerts(model);
+  }
 }

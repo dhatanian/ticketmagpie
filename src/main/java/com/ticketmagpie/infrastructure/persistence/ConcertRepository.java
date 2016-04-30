@@ -32,4 +32,8 @@ public class ConcertRepository {
         rs.getString("image_url")
     );
   }
+
+  public void delete(int id) {
+    jdbcTemplate.update("DELETE FROM concerts WHERE id=?", id);
+  }
 }
