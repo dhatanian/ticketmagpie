@@ -36,4 +36,12 @@ public class ConcertRepository {
   public void delete(int id) {
     jdbcTemplate.update("DELETE FROM concerts WHERE id=?", id);
   }
+
+  public void save(Concert concert) {
+    jdbcTemplate.update("INSERT INTO concerts (band, concert_date, description) VALUES (?,?,?)",
+        concert.getBand(),
+        concert.getDate(),
+        concert.getDescription()
+    );
+  }
 }

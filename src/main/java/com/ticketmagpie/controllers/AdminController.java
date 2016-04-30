@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ticketmagpie.Concert;
 import com.ticketmagpie.User;
 import com.ticketmagpie.infrastructure.persistence.ConcertRepository;
 import com.ticketmagpie.infrastructure.persistence.UserRepository;
@@ -57,6 +58,15 @@ public class AdminController {
   @RequestMapping(value = "/concerts/delete", method = POST)
   public String deleteConcert(@RequestParam("id") int id, Model model) {
     concertRepository.delete(id);
+    return listConcerts(model);
+  }
+
+  @RequestMapping(value = "/concerts", method = POST)
+  public String createConcert(@RequestParam("band") String band,
+      @RequestParam("date") String date,
+      @RequestParam("description") String description,
+      Model model) {
+    concertRepository.save(new Concert(null, band, date, description, null));
     return listConcerts(model);
   }
 }
