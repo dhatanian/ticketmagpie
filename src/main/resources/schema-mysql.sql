@@ -4,7 +4,8 @@ CREATE TABLE concerts (
   band         VARCHAR(255),
   concert_date VARCHAR(255),
   description  VARCHAR(255),
-  image_url    VARCHAR(255)
+  image_url    VARCHAR(255),
+  image_blob   BLOB
 );
 
 DROP TABLE IF EXISTS users CASCADE;

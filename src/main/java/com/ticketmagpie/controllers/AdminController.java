@@ -3,11 +3,14 @@ package com.ticketmagpie.controllers;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ticketmagpie.Concert;
 import com.ticketmagpie.User;
@@ -65,8 +68,9 @@ public class AdminController {
   public String createConcert(@RequestParam("band") String band,
       @RequestParam("date") String date,
       @RequestParam("description") String description,
-      Model model) {
-    concertRepository.save(new Concert(null, band, date, description, null));
+      @RequestParam("image") MultipartFile imageAsMultipartFile,
+      Model model) throws IOException {
+    concertRepository.save(new Concert(null, band, date, description, null, imageAsMultipartFile.getBytes()));
     return listConcerts(model);
   }
 }

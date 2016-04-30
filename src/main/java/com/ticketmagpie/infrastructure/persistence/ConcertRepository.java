@@ -1,11 +1,14 @@
 package com.ticketmagpie.infrastructure.persistence;
 
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.support.SqlLobValue;
 import org.springframework.stereotype.Component;
 
 import com.ticketmagpie.Concert;
@@ -29,8 +32,8 @@ public class ConcertRepository {
         rs.getString("band"),
         rs.getString("concert_date"),
         rs.getString("description"),
-        rs.getString("image_url")
-    );
+        rs.getString("image_url"),
+        getBytesFromBlob(rs.getBlob("image_blob")));
   }
 
   public void delete(int id) {
@@ -38,10 +41,27 @@ public class ConcertRepository {
   }
 
   public void save(Concert concert) {
-    jdbcTemplate.update("INSERT INTO concerts (band, concert_date, description) VALUES (?,?,?)",
-        concert.getBand(),
-        concert.getDate(),
-        concert.getDescription()
+    jdbcTemplate.update("INSERT INTO concerts (band, concert_date, description, image_blob) VALUES (?,?,?,?)",
+        new Object[] {
+            concert.getBand(),
+            concert.getDate(),
+            concert.getDescription(),
+            new SqlLobValue(concert.getImageBlob())
+        },
+        new int[] {
+            Types.VARCHAR,
+            Types.VARCHAR,
+            Types.VARCHAR,
+            Types.BLOB
+        }
     );
+  }
+
+  private byte[] getBytesFromBlob(Blob blob) throws SQLException {
+    if (blob == null) {
+      return null;
+    } else {
+      return blob.getBytes(1, (int) blob.length());
+    }
   }
 }

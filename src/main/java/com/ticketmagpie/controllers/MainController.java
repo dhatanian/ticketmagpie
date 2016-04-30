@@ -58,9 +58,11 @@ public class MainController {
   public void concertImage(@RequestParam(required = true) Integer id, HttpServletResponse httpServletResponse)
       throws IOException {
     Concert concert = concertRepository.get(id);
-    InputStream imageStream =
-        getClass().getClassLoader().getResourceAsStream(getResourceNameForConcertImage(concert.getImageUrl()));
-    IOUtils.copy(imageStream, httpServletResponse.getOutputStream());
+    if (concert.getImageUrl() != null) {
+      concertImageFromUrl(httpServletResponse, concert.getImageUrl());
+    } else {
+      concertImageFromBlob(httpServletResponse, concert.getImageBlob());
+    }
   }
 
   @RequestMapping("/passwordemail")
@@ -69,6 +71,18 @@ public class MainController {
     System.out.println(userFromDatabase);
     model.addAttribute("userFromDatabase", userFromDatabase);
     return "passwordemail";
+  }
+
+  private void concertImageFromBlob(HttpServletResponse httpServletResponse, byte[] imageBlob)
+      throws IOException {
+    httpServletResponse.getOutputStream().write(imageBlob);
+  }
+
+  private void concertImageFromUrl(HttpServletResponse httpServletResponse, String imageUrl)
+      throws IOException {
+    InputStream imageStream =
+        getClass().getClassLoader().getResourceAsStream(getResourceNameForConcertImage(imageUrl));
+    IOUtils.copy(imageStream, httpServletResponse.getOutputStream());
   }
 
   private String getResourceNameForConcertImage(String imageUrl) {

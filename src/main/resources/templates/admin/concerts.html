@@ -32,7 +32,7 @@
                 </tbody>
             </table>
             <h1><b>Create a new concert</b></h1>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div><label>Band:</label>
                     <input type="text"
                            name="band"/>
@@ -43,6 +43,9 @@
                 </div>
                 <div><label>Description:</label>
                     <textarea name="description"/>
+                </div>
+                <div><label>Image:</label>
+                    <input type="file" accept="image/*" name="image" />
                 </div>
                 <div>
                     <input type="submit" value="Create"/>
