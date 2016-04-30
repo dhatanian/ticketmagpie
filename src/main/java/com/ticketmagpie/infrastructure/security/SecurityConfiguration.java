@@ -27,6 +27,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     http
         //Necessary for HTML forms to work
         .csrf().disable()
+        //Required if we ever want to include the app in an iframe
+        .headers().disable()
         .authorizeRequests()
         .antMatchers("/user/**").authenticated()
         .anyRequest().permitAll()
