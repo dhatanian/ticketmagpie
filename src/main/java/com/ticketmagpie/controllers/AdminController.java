@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ticketmagpie.User;
+import com.ticketmagpie.infrastructure.persistence.ConcertRepository;
 import com.ticketmagpie.infrastructure.persistence.UserRepository;
 
 @Controller
@@ -17,6 +18,9 @@ import com.ticketmagpie.infrastructure.persistence.UserRepository;
 public class AdminController {
   @Autowired
   private UserRepository userRepository;
+
+  @Autowired
+  private ConcertRepository concertRepository;
 
   @RequestMapping("")
   public String home() {
@@ -39,8 +43,14 @@ public class AdminController {
   }
 
   @RequestMapping(value = "/users/delete", method = POST)
-  public String listUsers(@RequestParam("username") String username, Model model) {
+  public String deleteUser(@RequestParam("username") String username, Model model) {
     userRepository.delete(username);
     return listUsers(model);
+  }
+
+  @RequestMapping(value = "/concerts", method = GET)
+  public String listConcerts(Model model) {
+    model.addAttribute("concerts", concertRepository.getAllConcerts());
+    return "admin/concerts";
   }
 }

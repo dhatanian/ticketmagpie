@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: ticketmagpie-head">
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <div th:replace="fragments :: ticketmagpie-header">
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <table>
+                <thead>
+                <td><b>Band</b></td>
+                <td><b>Date</b></td>
+                <td></td>
+                </thead>
+                <tbody>
+                <tr th:each="concert : ${concerts}">
+                    <td th:text="${concert.band}"></td>
+                    <td th:text="${concert.date}"></td>
+                    <td>
+                        <form th:action="@{concerts/delete(id=${concert.id})}"
+                              method="post" style="display:inline;">
+                            <input type="submit" value="Delete"
+                                   style="padding: 0.2em;"/>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <h1><b>Create a new concert</b></h1>
+            <form action="" method="post">
+                <div><label>Band:</label>
+                    <input type="text"
+                           name="band"/>
+                </div>
+                <div><label>Date:</label>
+                    <input type="text"
+                           name="date"/>
+                </div>
+                <div><label>Description:</label>
+                    <textarea name="description"/>
+                </div>
+                <div>
+                    <input type="submit" value="Create"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div th:replace="fragments :: ticketmagpie-footer">
+    </div>
+
+</div>
+
+<!-- Scripts -->
+
+<span th:replace="fragments :: ticketmagpie-scripts"></span>
+
+</body>
+</html>
