@@ -11,7 +11,10 @@
 
     <div class="wrapper">
         <div class="container">
-            <h1>Your ticket to <span th:text="${ticket.concert.band}"></span></h1>
+            <h1>
+                Your ticket to <span th:text="${ticket.concert.band}"></span>
+                on <span th:text="${ticket.concert.date}"></span>
+            </h1>
             <table border="1" style="max-width: 400px; margin: auto;">
                 <tr>
                     <td>First name</td>

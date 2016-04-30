@@ -3,12 +3,14 @@ package com.ticketmagpie;
 public class Concert {
   private Integer id;
   private String band;
+  private String date;
   private String description;
   private String imageUrl;
 
-  public Concert(Integer id, String band, String description, String imageUrl) {
+  public Concert(Integer id, String band, String date, String description, String imageUrl) {
     this.id = id;
     this.band = band;
+    this.date = date;
     this.description = description;
     this.imageUrl = imageUrl;
   }
@@ -25,7 +27,11 @@ public class Concert {
     return imageUrl;
   }
 
-  public Integer getId() {    return id;  }
+  public String getDate() {
+    return date;
+  }
+
+  public Integer getId() { return id; }
 
   @Override
   public String toString() {

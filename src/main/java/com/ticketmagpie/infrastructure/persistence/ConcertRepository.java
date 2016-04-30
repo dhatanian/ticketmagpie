@@ -27,6 +27,7 @@ public class ConcertRepository {
     return new Concert(
         rs.getInt("id"),
         rs.getString("band"),
+        rs.getString("concert_date"),
         rs.getString("description"),
         rs.getString("image_url")
     );
