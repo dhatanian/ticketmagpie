@@ -16,7 +16,7 @@
                 <section class="6u 12u(narrower) feature" th:each="concert : ${concerts}">
                     <div class="image-wrapper first">
                         <a href="#" class="image featured first"><img
-                                th:src="@{/images/{imagePath}(imagePath=${concert.imageUrl})}"/></a>
+                                th:src="@{/concertimage(id=${concert.id})}"/></a>
                     </div>
                     <header>
                         <h2 th:text="${concert.band}"></h2>
