@@ -9,3 +9,4 @@ INSERT INTO concerts (band, concert_date, description, image_url) VALUES ('The P
 
 INSERT INTO users (username, password, role) VALUES ('john', 'jpass', 'USER');
 INSERT INTO users (username, password, role) VALUES ('mark', 'mpass', 'ADMIN');
+INSERT INTO users (username, password, role) VALUES ('danbilling', 't4rd1s1963', 'USER');
