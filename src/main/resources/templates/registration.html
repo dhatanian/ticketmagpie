@@ -11,23 +11,15 @@
 
     <div class="wrapper">
         <div class="container">
-            <p th:if="${param.error}" style="color:red;">
-                Unable to log in: <span
-                    th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
-            </p>
-            <p th:if="${param.logout}">
-                You have been logged out.
-            </p>
-            <p>Please enter your user name and password:</p>
-            <form th:action="@{/login}" method="post">
+            <p>Please enter the user name and password you would like:</p>
+            <form th:action="@{/registration}" method="get">
                 <div><label> User Name : <input type="text" name="username"/> </label></div>
                 <div><label> Password: <input type="password" name="password"/> </label></div>
+                <input type="hidden" name="role" value="USER"/>
                 <div>
-                    <input type="submit" value="Sign In"/>
-                    <input type="checkbox" name="ticketmagpie-rememberme">Remember me</input>
+                    <input type="submit" value="Register"/>
                 </div>
             </form>
-            <a th:href="@{/forgotpassword}">Forgot your password?</a>
         </div>
     </div>
 

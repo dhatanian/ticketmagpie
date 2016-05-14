@@ -47,6 +47,10 @@
                             <span class="icon fa-user"></span> &nbsp;
                             <span th:text="${#authentication.name != 'anonymousUser'} ? ${#authentication.name} : 'Log in'"></span>
                         </a>
+                        <a href="/registration" th:if="${#authentication.name == 'anonymousUser'}">
+                            <span class="icon fa-user-plus"></span> &nbsp;
+                            Register
+                        </a>
                         <form th:if="${#authentication.name != 'anonymousUser'}"
                               action="/logout"
                               method="post" style="display:inline;">
