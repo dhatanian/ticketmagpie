@@ -1,10 +1,13 @@
 package com.ticketmagpie.infrastructure.security;
 
+import static java.util.Collections.emptyList;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
@@ -21,12 +24,18 @@ public class TicketMagPieRememberMeService implements RememberMeServices, Logout
     if (httpServletRequest.getCookies() != null) {
       for (Cookie cookie : httpServletRequest.getCookies()) {
         if (COOKIE_NAME.equalsIgnoreCase(cookie.getName())) {
-          return new TicketMagPieCookieAuthenticationToken(decrypt(cookie.getValue()));
+          return decrypt(cookie.getValue());
         }
       }
     }
 
     return null;
+  }
+
+  private Authentication decrypt(String value) {
+    String decrypted = new String(Base64.decodeBase64(value));
+    String[] values = decrypted.split("\\|");
+    return new UsernamePasswordAuthenticationToken(values[0], values[1], emptyList());
   }
 
   @Override
@@ -37,9 +46,18 @@ public class TicketMagPieRememberMeService implements RememberMeServices, Logout
   @Override
   public void loginSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) {
     if (httpServletRequest.getParameter(CHECKBOX_PARAMETER) != null) {
-      httpServletResponse.addCookie(cookieForUser(authentication.getName()));
+      httpServletResponse.addCookie(cookieForUser((UsernamePasswordAuthenticationToken) authentication));
     }
   }
+
+  private Cookie cookieForUser(UsernamePasswordAuthenticationToken authentication) {
+    Cookie cookie =
+        new Cookie(COOKIE_NAME, encrypt(authentication));
+    cookie.setMaxAge(ONE_DAY_IN_SECONDS);
+    return cookie;
+  }
+
+  private String encrypt(UsernamePasswordAuthenticationToken authentication) {return Base64.encodeBase64String((authentication.getName() + "|" + authentication.getCredentials()).getBytes());}
 
   @Override
   public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
@@ -47,17 +65,4 @@ public class TicketMagPieRememberMeService implements RememberMeServices, Logout
     cookie.setMaxAge(0);
     response.addCookie(cookie);
   }
-
-  private String decrypt(String value) {
-    return new String(Base64.decodeBase64(value));
-  }
-
-  private Cookie cookieForUser(String username) {
-    Cookie cookie =
-        new Cookie(COOKIE_NAME, encrypt(username));
-    cookie.setMaxAge(ONE_DAY_IN_SECONDS);
-    return cookie;
-  }
-
-  private String encrypt(String username) {return Base64.encodeBase64String(username.getBytes());}
 }
