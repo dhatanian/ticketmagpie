@@ -68,3 +68,6 @@ Very unsecure remember-me feature...
 
 Admin page is not protected
 ---------------------------
+
+Registration Process
+---------------------------
