@@ -34,25 +34,32 @@
             <h1 id="logo"><a href="/">TicketMagpie</a></h1>
 
             <!-- Nav -->
-            <nav id="nav">
+            <nav id="nav-left">
                 <ul>
                     <li><a href="/">What's on</a></li>
+                </ul>
+            </nav>
+            <nav id="nav-right">
+                <ul>
+                    <li>
+                        <a href="/user/home">
+                            <span class="icon fa-user"></span> &nbsp;
+                            <span th:text="${#authentication.name != 'anonymousUser'} ? ${#authentication.name} : 'Log in'"></span>
+                        </a>
+                    </li>
+                    <li th:if="${#authentication.name == 'anonymousUser'}">
+                        <a href="/registration">
+                            <span class="icon fa-user-plus"></span> &nbsp;
+                            Register
+                        </a>
+                    </li>
                     <li th:if="${#authentication.name != 'anonymousUser'}">
                         <a sec:authorize="hasAuthority('ADMIN')" href="/user/admin">
                             Admin
                         </a>
                     </li>
-                    <li class="break">
-                        <a href="/user/home">
-                            <span class="icon fa-user"></span> &nbsp;
-                            <span th:text="${#authentication.name != 'anonymousUser'} ? ${#authentication.name} : 'Log in'"></span>
-                        </a>
-                        <a href="/registration" th:if="${#authentication.name == 'anonymousUser'}">
-                            <span class="icon fa-user-plus"></span> &nbsp;
-                            Register
-                        </a>
-                        <form th:if="${#authentication.name != 'anonymousUser'}"
-                              action="/logout"
+                    <li th:if="${#authentication.name != 'anonymousUser'}">
+                        <form action="/logout"
                               method="post" style="display:inline;">
                             <input type="submit" value="Sign Out"
                                    style="padding: 0.2em; color: white; border-color: white;"/>

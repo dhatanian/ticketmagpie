@@ -2071,30 +2071,43 @@
 			text-transform: uppercase;
 		}
 
-	#nav {
-		text-align: center;
+	#nav-left {
+		text-align: right;
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
+		width: 50%;
 		height: 4em;
+		padding-right: 7.5em;
 		line-height: 4em;
 	}
 
-		#nav > ul {
+	#nav-right {
+		text-align: left;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 50%;
+		height: 4em;
+		padding-left: 7.5em;
+		line-height: 4em;
+	}
+
+		nav > ul {
 			margin: 0;
 		}
 
-			#nav > ul > li {
+			nav > ul > li {
 				display: inline-block;
-				margin-left: 1em;
+				margin-left: 0.5em;
+				margin-right: 0.5em;
 			}
 
-				#nav > ul > li > ul {
+				nav > ul > li > ul {
 					display: none;
 				}
 
-				#nav > ul > li > span, #nav > ul > li > a {
+				nav > ul > li > span, nav > ul > li > a {
 					color: #fff;
 					text-decoration: none;
 					outline: 0;
@@ -2109,19 +2122,13 @@
 					transition: border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
 				}
 
-				#nav > ul > li.active > span, #nav > ul > li.active > a {
+				nav > ul > li.active > span, #nav > ul > li.active > a {
 					border-color: rgba(255, 255, 255, 0.75);
 					background-color: rgba(255, 255, 255, 0.15);
 					color: #fff;
 				}
 
-				#nav > ul > li:first-child {
-					margin-left: 0;
-				}
 
-				#nav > ul > li.break {
-					margin-left: 20em;
-				}
 
 	.dropotron {
 		text-align: left;
