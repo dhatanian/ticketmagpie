@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ticketmagpie.Concert;
 import com.ticketmagpie.Ticket;
 import com.ticketmagpie.User;
+import com.ticketmagpie.infrastructure.persistence.CommentRepository;
 import com.ticketmagpie.infrastructure.persistence.ConcertRepository;
 import com.ticketmagpie.infrastructure.persistence.TicketRepository;
 import com.ticketmagpie.infrastructure.persistence.UserRepository;
@@ -30,6 +31,9 @@ public class MainController {
 
   @Autowired
   private UserRepository userRepository;
+
+  @Autowired
+  private CommentRepository commentRepository;
 
   @RequestMapping("/")
   public String index(Model model) {
@@ -93,8 +97,8 @@ public class MainController {
   @RequestMapping("/concert")
   public String concert(@RequestParam Integer id, Model model)
       throws IOException {
-    Concert concert = concertRepository.get(id);
-    model.addAttribute("concert", concert);
+    model.addAttribute("concert", concertRepository.get(id));
+    model.addAttribute("comments", commentRepository.getAllForConcert(id));
     return "concert";
   }
 

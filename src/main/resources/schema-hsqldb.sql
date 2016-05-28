@@ -15,6 +15,12 @@ CREATE TABLE users (
   role     VARCHAR(255)
 );
 
+CREATE TABLE comments (
+  username     VARCHAR(255),
+  concert_id   VARCHAR(255),
+  comment_text VARCHAR(4096)
+);
+
 CREATE TABLE tickets (
   id IDENTITY,
   concertid INT NOT NULL,

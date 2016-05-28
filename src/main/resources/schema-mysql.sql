@@ -28,3 +28,10 @@ CREATE TABLE tickets (
   country   VARCHAR(255),
   user      VARCHAR(255)
 );
+
+DROP TABLE IF EXISTS comments CASCADE;
+CREATE TABLE comments (
+  username     VARCHAR(255),
+  concert_id   VARCHAR(255),
+  comment_text VARCHAR(4096)
+);

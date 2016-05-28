@@ -27,6 +27,19 @@
                     </li>
                 </ul>
             </div>
+            <div class="row" th:if="${#authentication.name != 'anonymousUser'}">
+                <form action="/user/comment" method="post" style="width:100%">
+                    Add a comment:
+                    <input type="text" name="text" style="width:25em; display:inline;"/>
+                    <input type="hidden" name="user" th:value="${#authentication.name}"/>
+                    <input type="hidden" name="concertId" th:value="${concert.id}"/>
+                    <input type="submit" value="Send"/>
+                </form>
+            </div>
+            <div class="row" th:each="comment : ${comments}">
+                <p><i th:text="${comment.user}"></i></p>
+                <p th:text="${comment.text}"></p>
+            </div>
         </div>
     </div>
 
