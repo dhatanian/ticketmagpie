@@ -38,7 +38,7 @@
             </div>
             <div class="row" th:each="comment : ${comments}">
                 <p><i th:text="${comment.user}"></i></p>
-                <p th:text="${comment.text}"></p>
+                <p th:utext="${comment.text}"></p>
             </div>
         </div>
     </div>
