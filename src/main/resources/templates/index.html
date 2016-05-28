@@ -14,17 +14,21 @@
         <div class="container">
             <div class="row">
                 <section class="6u 12u(narrower) feature" th:each="concert : ${concerts}">
-                    <div class="image-wrapper first">
-                        <a href="#" class="image featured first"><img
-                                th:src="@{/concertimage(id=${concert.id})}"/></a>
-                    </div>
-                    <header>
-                        <h2 th:text="${concert.band}"></h2>
-                        <i th:text="${concert.date}"></i>
-                    </header>
-                    <p th:text="${concert.description}"></p>
+                    <a th:href="@{/concert(id=${concert.id})}">
+                        <div class="image-wrapper first">
+                            <div class="image featured first"><img
+                                    th:src="@{/concertimage(id=${concert.id})}"/></div>
+                        </div>
+                        <header>
+                            <h2 th:text="${concert.band}"></h2>
+                            <i th:text="${concert.date}"></i>
+                        </header>
+                        <p th:text="${concert.description}"></p>
+                    </a>
                     <ul class="actions">
                         <li><a th:href="@{/user/book(id=${concert.id})}" class="button">Book</a>
+                        </li>
+                        <li><a th:href="@{/concert(id=${concert.id})}" class="button">View more</a>
                         </li>
                     </ul>
                 </section>

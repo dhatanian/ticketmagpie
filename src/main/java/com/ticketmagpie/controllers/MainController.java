@@ -90,6 +90,14 @@ public class MainController {
     httpServletResponse.sendRedirect(url);
   }
 
+  @RequestMapping("/concert")
+  public String concert(@RequestParam Integer id, Model model)
+      throws IOException {
+    Concert concert = concertRepository.get(id);
+    model.addAttribute("concert", concert);
+    return "concert";
+  }
+
   private void concertImageFromBlob(HttpServletResponse httpServletResponse, byte[] imageBlob)
       throws IOException {
     httpServletResponse.getOutputStream().write(imageBlob);
