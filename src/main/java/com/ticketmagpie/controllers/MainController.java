@@ -22,81 +22,87 @@ import com.ticketmagpie.infrastructure.persistence.UserRepository;
 @Controller
 public class MainController {
 
-    @Autowired
-    private ConcertRepository concertRepository;
+  @Autowired
+  private ConcertRepository concertRepository;
 
-    @Autowired
-    private TicketRepository ticketRepository;
+  @Autowired
+  private TicketRepository ticketRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
-    @RequestMapping("/")
-    public String index(Model model) {
-        model.addAttribute("concerts", concertRepository.getAllConcerts());
-        return "index";
+  @RequestMapping("/")
+  public String index(Model model) {
+    model.addAttribute("concerts", concertRepository.getAllConcerts());
+    return "index";
+  }
+
+  @RequestMapping("/login")
+  public String login() {
+    return "login";
+  }
+
+  @RequestMapping("/registration")
+  public String registration(@RequestParam(required = false, name = "username") String username, @RequestParam(required = false, name = "password") String password, @RequestParam(required = false, name = "role", defaultValue = "USER") String role) {
+    if (username == null) {
+      return "registration";
+    } else {
+      userRepository.save(new User(username, password, role));
+      return "login";
     }
 
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
-    }
+  }
 
-    @RequestMapping("/registration")
-    public String registration(@RequestParam(required = false, name = "username") String username, @RequestParam(required = false, name = "password") String password, @RequestParam(required = false, name = "role", defaultValue = "USER") String role) {
-        if (username == null) {
-            return "registration";
-        } else {
-            userRepository.save(new User(username, password, role));
-            return "login";
-        }
+  @RequestMapping("/ticket")
+  public String ticket(@RequestParam Integer id, Model model) {
+    Ticket ticket = ticketRepository.get(id);
+    model.addAttribute("ticket", ticket);
+    return "ticket";
+  }
 
-    }
+  @RequestMapping("/forgotpassword")
+  public String forgotPassword(@RequestParam(required = false) String user) {
+    return "forgotpassword";
+  }
 
-    @RequestMapping("/ticket")
-    public String ticket(@RequestParam Integer id, Model model) {
-        Ticket ticket = ticketRepository.get(id);
-        model.addAttribute("ticket", ticket);
-        return "ticket";
+  @RequestMapping("/concertimage")
+  public void concertImage(@RequestParam(required = true) Integer id, HttpServletResponse httpServletResponse)
+      throws IOException {
+    Concert concert = concertRepository.get(id);
+    if (concert.getImageUrl() != null) {
+      concertImageFromUrl(httpServletResponse, concert.getImageUrl());
+    } else {
+      concertImageFromBlob(httpServletResponse, concert.getImageBlob());
     }
+  }
 
-    @RequestMapping("/forgotpassword")
-    public String forgotPassword(@RequestParam(required = false) String user) {
-        return "forgotpassword";
-    }
+  @RequestMapping("/passwordemail")
+  public String passwordEmail(@RequestParam String user, Model model) {
+    User userFromDatabase = userRepository.get(user);
+    System.out.println(userFromDatabase);
+    model.addAttribute("userFromDatabase", userFromDatabase);
+    return "passwordemail";
+  }
 
-    @RequestMapping("/concertimage")
-    public void concertImage(@RequestParam(required = true) Integer id, HttpServletResponse httpServletResponse)
-            throws IOException {
-        Concert concert = concertRepository.get(id);
-        if (concert.getImageUrl() != null) {
-            concertImageFromUrl(httpServletResponse, concert.getImageUrl());
-        } else {
-            concertImageFromBlob(httpServletResponse, concert.getImageBlob());
-        }
-    }
+  @RequestMapping("/redirect")
+  public void redirect(@RequestParam String url, HttpServletResponse httpServletResponse)
+      throws IOException {
+    httpServletResponse.sendRedirect(url);
+  }
 
-    @RequestMapping("/passwordemail")
-    public String passwordEmail(@RequestParam String user, Model model) {
-        User userFromDatabase = userRepository.get(user);
-        System.out.println(userFromDatabase);
-        model.addAttribute("userFromDatabase", userFromDatabase);
-        return "passwordemail";
-    }
+  private void concertImageFromBlob(HttpServletResponse httpServletResponse, byte[] imageBlob)
+      throws IOException {
+    httpServletResponse.getOutputStream().write(imageBlob);
+  }
 
-    private void concertImageFromBlob(HttpServletResponse httpServletResponse, byte[] imageBlob)
-            throws IOException {
-        httpServletResponse.getOutputStream().write(imageBlob);
-    }
+  private void concertImageFromUrl(HttpServletResponse httpServletResponse, String imageUrl)
+      throws IOException {
+    InputStream imageStream =
+        getClass().getClassLoader().getResourceAsStream(getResourceNameForConcertImage(imageUrl));
+    IOUtils.copy(imageStream, httpServletResponse.getOutputStream());
+  }
 
-    private void concertImageFromUrl(HttpServletResponse httpServletResponse, String imageUrl)
-            throws IOException {
-        InputStream imageStream =
-                getClass().getClassLoader().getResourceAsStream(getResourceNameForConcertImage(imageUrl));
-        IOUtils.copy(imageStream, httpServletResponse.getOutputStream());
-    }
-
-    private String getResourceNameForConcertImage(String imageUrl) {
-        return "static/images/" + imageUrl;
-    }
+  private String getResourceNameForConcertImage(String imageUrl) {
+    return "static/images/" + imageUrl;
+  }
 }
