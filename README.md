@@ -34,11 +34,7 @@ If you do not have a database server, you can run the application with an HSQLDB
 ```
 mvn spring-boot:run -Dspring.profiles.active=hsqldb
 ```
-<<<<<<< HEAD
 
  
 Vulnerabilities
 ===============
-
-
->>>>>>> origin/master
