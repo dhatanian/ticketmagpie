@@ -39,7 +39,7 @@ public class UserRepository {
   }
 
   public void save(User user) {
-    jdbcTemplate.update("INSERT INTO users (username, password, role) VALUES (?, ?, ?)", user.getUsername(), user.getPassword(), user.getRole());
+    jdbcTemplate.update("INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, ?)", user.getUsername(), user.getPassword(), user.getEmail(), user.getRole());
   }
 
   private String passwordCheckQuery(String username, String password) {
@@ -47,6 +47,6 @@ public class UserRepository {
   }
 
   private User toUser(ResultSet rs) throws SQLException {
-    return new User(rs.getString("username"), rs.getString("password"), rs.getString("role"));
+    return new User(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("role"));
   }
 }

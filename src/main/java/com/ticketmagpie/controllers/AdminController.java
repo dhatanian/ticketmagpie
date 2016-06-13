@@ -39,10 +39,11 @@ public class AdminController {
 
   @RequestMapping(value = "/users", method = POST)
   public String createUser(@RequestParam("username") String username,
+      @RequestParam(required = false, name = "email") String email,
       @RequestParam("role") String role,
       @RequestParam("password") String password,
       Model model) {
-    userRepository.save(new User(username, password, role));
+    userRepository.save(new User(username, password, email, role));
     return listUsers(model);
   }
 

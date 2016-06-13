@@ -14,12 +14,14 @@
             <table>
                 <thead>
                 <td><b>Name</b></td>
+                <td><b>Email</b></td>
                 <td><b>Role</b></td>
                 <td></td>
                 </thead>
                 <tbody>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
                     <td th:text="${user.role}"></td>
                     <td>
                         <form th:action="@{users/delete(username=${user.username})}"
@@ -36,6 +38,10 @@
                 <div><label>Username:</label>
                     <input type="text"
                            name="username"/>
+                </div>
+                <div><label>Email:</label>
+                    <input type="text"
+                           name="email"/>
                 </div>
                 <div><label>Role:</label>
                     <select name="role">

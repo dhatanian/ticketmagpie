@@ -19,6 +19,7 @@ import com.ticketmagpie.infrastructure.persistence.CommentRepository;
 import com.ticketmagpie.infrastructure.persistence.ConcertRepository;
 import com.ticketmagpie.infrastructure.persistence.TicketRepository;
 import com.ticketmagpie.infrastructure.persistence.UserRepository;
+import com.ticketmagpie.infrastructure.security.ForgotPasswordService;
 
 @Controller
 public class MainController {
@@ -35,6 +36,9 @@ public class MainController {
   @Autowired
   private CommentRepository commentRepository;
 
+  @Autowired
+  private ForgotPasswordService forgotPasswordService;
+
   @RequestMapping("/")
   public String index(Model model) {
     model.addAttribute("concerts", concertRepository.getAllConcerts());
@@ -47,11 +51,11 @@ public class MainController {
   }
 
   @RequestMapping("/registration")
-  public String registration(@RequestParam(required = false, name = "username") String username, @RequestParam(required = false, name = "password") String password, @RequestParam(required = false, name = "role", defaultValue = "USER") String role) {
+  public String registration(@RequestParam(required = false, name = "username") String username, @RequestParam(required = false, name = "password") String password, @RequestParam(required = false, name = "email") String email, @RequestParam(required = false, name = "role", defaultValue = "USER") String role) {
     if (username == null) {
       return "registration";
     } else {
-      userRepository.save(new User(username, password, role));
+      userRepository.save(new User(username, password, email, role));
       return "login";
     }
 
@@ -65,7 +69,14 @@ public class MainController {
   }
 
   @RequestMapping("/forgotpassword")
-  public String forgotPassword(@RequestParam(required = false) String user) {
+  public String forgotPassword(@RequestParam(required = false) String user, Model model) {
+    boolean done = false;
+    if (user != null) {
+      User userFromDatabase = userRepository.get(user);
+      forgotPasswordService.userForgotPassword(userFromDatabase);
+      done = true;
+    }
+    model.addAttribute("done", done);
     return "forgotpassword";
   }
 
@@ -78,14 +89,6 @@ public class MainController {
     } else {
       concertImageFromBlob(httpServletResponse, concert.getImageBlob());
     }
-  }
-
-  @RequestMapping("/passwordemail")
-  public String passwordEmail(@RequestParam String user, Model model) {
-    User userFromDatabase = userRepository.get(user);
-    System.out.println(userFromDatabase);
-    model.addAttribute("userFromDatabase", userFromDatabase);
-    return "passwordemail";
   }
 
   @RequestMapping("/redirect")

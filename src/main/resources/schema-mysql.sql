@@ -11,6 +11,7 @@ CREATE TABLE concerts (
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (
   username VARCHAR(255) NOT NULL PRIMARY KEY,
+  email    VARCHAR(255),
   password VARCHAR(255),
   role     VARCHAR(255)
 );
