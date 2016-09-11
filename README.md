@@ -6,7 +6,9 @@ This project aims at demonstrating various security vulnerabilities such as the 
 Configuration
 ---------------------------
 This project requires [Maven 3](https://maven.apache.org/)
-Maven requires [Java Development Kit] available here: (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html/). 
+Maven requires [Java Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html/). 
+
+1. Install Maven on your machine, in an appropriate location
 
 Running the project
 ---------------------------
