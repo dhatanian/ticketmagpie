@@ -8,14 +8,16 @@ Configuration
 This project requires [Maven 3](https://maven.apache.org/)
 Maven requires [Java Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html/). 
 
-1. Install Maven on your machine, in an appropriate location
+1. Extract, configure and install Maven on your machine, in an appropriate location: (https://maven.apache.org/install.html)
+2. Extract and install Java Development Kit on your machine, in an appropriate location
+3. Configure the JAVA_HOME environment variable on your machine. Instructions here:  [WINDOWS](https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html)
+[MAC](https://www.mkyong.com/java/how-to-set-java_home-environment-variable-on-mac-os-x/)
+[LINUX](http://www.cyberciti.biz/faq/linux-unix-set-java_home-path-variable/)
 
 Running the project
 ---------------------------
 
-This project requires [Maven 3](https://maven.apache.org/)
-
-Once you have Maven, you can start the application by running this command from the root folder of the project:
+Once you have configured and installed Maven and Java Development Kit, you can start the application by running this command from the root folder of the project:
 
 
 ```
