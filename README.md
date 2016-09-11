@@ -3,11 +3,15 @@ TicketMagpie
 
 This project aims at demonstrating various security vulnerabilities such as the ones listed in the OWASP Top10.
 
+Configuration
+---------------------------
+This project requires [Maven 3](https://maven.apache.org/)
+Maven requires [Java Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html/). All versions of the JDK are available from here 
 
 Running the project
 ---------------------------
 
-This project requires [Maven 3](https://maven.apache.org/).
+This project requires [Maven 3](https://maven.apache.org/)
 
 Once you have Maven, you can start the application by running this command from the root folder of the project:
 
