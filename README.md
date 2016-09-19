@@ -14,7 +14,8 @@ Maven requires [Java Development Kit](http://www.oracle.com/technetwork/java/jav
 [MAC](https://www.mkyong.com/java/how-to-set-java_home-environment-variable-on-mac-os-x/)
 [LINUX](http://www.cyberciti.biz/faq/linux-unix-set-java_home-path-variable/)
 4. You may need to also configure the Path variable: https://www.java.com/en/download/help/path.xml
-5. Download the TicketMagpie-master project to your local machine and install to an appropriate location e.g C:\Users\[username]\ticketmagpie (on Windows) (Make sure to rename ticketmagpie-master to ticketmagpie
+5. Download the TicketMagpie-master project to your local machine and install to an appropriate location e.g C:\Users\[username]\ticketmagpie (on Windows)
+**Make sure to rename ticketmagpie-master to ticketmagpie**
 
 Running the project
 ---------------------------
