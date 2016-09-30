@@ -26,6 +26,19 @@ Once you have configured and installed Maven and Java Development Kit and Ticket
 mvn spring-boot:run
 ```
 
+The application will then be available at [http://localhost:8080].
+
+Running the project in Docker
+---------------------------
+
+The application is published on the docker hub. You can run it like this, with the in-memory database:
+
+```
+docker run -e "SPRING_PROFILES_ACTIVE=hsqldb" -p8080:8080 "dhatanian/ticketmagpie"
+```
+
+The application will then be available at [http://localhost:8080].
+
 Database configuration
 ---------------------------
 
@@ -44,7 +57,3 @@ If you do not have a database server, you can run the application with an HSQLDB
 ```
 mvn spring-boot:run -Dspring.profiles.active=hsqldb
 ```
-
- 
-Vulnerabilities
-===============
