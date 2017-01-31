@@ -26,7 +26,7 @@ public class MailService {
   }
 
   public static final String USERNAME = "ticketmagpie@gmail.com";
-  public static final String PASSWORD = "t1ck3tm4gp1e";
+  public static final String PASSWORD = "t1ck3tm4gp1e1";
   public static final Authenticator AUTHENTICATOR = new Authenticator() {
     protected PasswordAuthentication getPasswordAuthentication() {
       return new PasswordAuthentication(USERNAME, PASSWORD);
