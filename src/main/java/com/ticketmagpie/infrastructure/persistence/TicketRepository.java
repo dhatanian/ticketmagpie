@@ -23,8 +23,8 @@ public class TicketRepository {
 
   public int save(Ticket ticket) {
     jdbcTemplate.update("INSERT INTO " +
-            "tickets (concertid,  firstname,  lastname,  address1,  address2,  address3,  postcode,  country, user) " +
-            "VALUES (?,?,?,?,?,?,?,?,?);",
+            "tickets (concertid,  firstname,  lastname,  address1,  address2,  address3,  postcode,  country, paymentmethod, cardnumber, cvv2, expirydate, user) " +
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);",
         ticket.getConcert().getId(),
         ticket.getFirstName(),
         ticket.getLastName(),
@@ -33,6 +33,10 @@ public class TicketRepository {
         ticket.getAddress3(),
         ticket.getPostcode(),
         ticket.getCountry(),
+        ticket.getPaymentmethod(),
+        ticket.getCardnumber(),
+        ticket.getCvv2(),
+        ticket.getExpirydate(),
         ticket.getUser()
     );
 
@@ -59,6 +63,10 @@ public class TicketRepository {
         rs.getString("address3"),
         rs.getString("postcode"),
         rs.getString("country"),
+        rs.getString("paymentmethod"),
+        rs.getString("cardnumber"),
+        rs.getString("cvv2"),
+        rs.getString("expirydate"),
         rs.getString("user"));
   }
 }

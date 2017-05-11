@@ -52,10 +52,14 @@ public class UserController {
           @RequestParam("address3") String address3,
           @RequestParam("postcode") String postCode,
           @RequestParam("country") String country,
+          @RequestParam("paymentmethod") String paymentmethod,
+          @RequestParam("cardnumber") String cardnumber,
+          @RequestParam("ccv2") String ccv2,
+          @RequestParam("expirydate") String expirydate,
           @RequestParam("concertid") Integer concertId,
           Authentication currentUser) {
     Ticket ticket =
-        new Ticket(concertRepository.get(concertId), firstName, lastName, address1, address2, address3, postCode, country, currentUser.getName());
+        new Ticket(concertRepository.get(concertId), firstName, lastName, address1, address2, address3, postCode, country, paymentmethod, cardnumber, ccv2, expirydate, currentUser.getName());
     int savedTicketId = ticketRepository.save(ticket);
     return "redirect:/ticket?id=" + savedTicketId;
   }
