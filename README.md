@@ -54,6 +54,7 @@ mvn spring-boot:run -Dspring.datasource.url=jdbc:mysql://MYSQL_SERVER:PORT/DB_NA
 If you do not have a database server, you can run the application with an HSQLDB in-memory database:
 
 
+
 ```
 mvn spring-boot:run -Dspring.profiles.active=hsqldb
 ```
